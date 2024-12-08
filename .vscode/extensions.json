@@ -2,6 +2,7 @@
   "recommendations": [
     "mccarter.start-git-bash",
     "timonwong.shellcheck",
-    "thfriedrich.lammps"
+    "thfriedrich.lammps",
+    "ms-azuretools.vscode-docker"
   ]
 }

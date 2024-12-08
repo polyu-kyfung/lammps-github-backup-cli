@@ -55,8 +55,11 @@ docker compose down
 ### Execute an Interactive Bash Shell on the Container
 
 ```sh
-docker exec -it --workdir /home lammps-github-backup-cli bash
+docker exec -it --workdir /project_home lammps-github-backup-service bash
 ```
+
+> [!NOTE]
+> Ensure your local repository is accessible in the WSL2 environment. Open the WSL2 terminal and navigate to your repository to run Docker commands seamlessly.
 
 ### Install vi Editor
 
@@ -96,7 +99,7 @@ To initialize git in a folder, open a terminal and navigate to the folder you wa
 
 ### Create a new remote repository on GitHub
 
-After you have git installed and configured in your folder. You can run the `../new-GitHub-repo.sh` script to set up the remote repository. The script will prompt you to choose a file type and then create a new private repository, with a name that reflects the file type and the simulation parameters, on GitHub using the GitHub CLI.
+After you have git installed and configured in your folder. You can run the `../new-gitHub-repo.sh` script to set up the remote repository. The script will prompt you to choose a file type and then create a new private repository, with a name that reflects the file type and the simulation parameters, on GitHub using the GitHub CLI.
 
 ### Quick menu to explore and edit a GitHub repository
 

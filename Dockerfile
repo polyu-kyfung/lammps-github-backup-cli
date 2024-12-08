@@ -30,3 +30,6 @@ RUN apt update && apt install -y \
 
 # Set up gh (GitHub CLI) bash completion
 RUN echo 'eval "$(gh completion -s bash)"' >> ~/.bash_profile
+
+# Set the working directory to `/project_home/`
+WORKDIR /project_home/

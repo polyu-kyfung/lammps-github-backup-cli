@@ -17,7 +17,7 @@ These packages ensure that the environment is well-equipped for comprehensive Gi
 The `docker-compose.yml` file is configured to run the GitHub backup service with the following key components:
 
 - **Environment Variables**: Loads configuration parameters from the `.env` file.
-- **Volume Mounts**: Maps the current directory, a specified project directory, and the `.ssh` directory to the container, ensuring access to necessary files and SSH keys.
+- **Volume Mounts**: Maps the current directory, a specified project directory.
 
 These configurations ensure a seamless and secure environment for backing up LAMMPS projects from GitHub.
 
@@ -25,12 +25,13 @@ These configurations ensure a seamless and secure environment for backing up LAM
 
 ## How to Use
 
-To utilize this setup, start by cloning the repository and navigating to the project's root directory.
+To get started with this setup, follow these steps:
 
-1. Create a `.env` file from the `.env-sample` file.
-2. Generate a new SSH key by following the instructions provided [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=linux).
+1. **Clone the repository** and navigate to the project's root directory.
 
-Once these steps are complete, proceed with the following commands:
+2. **Create a `.env` file** by copying the existing `.env-sample` file and modifying it as needed.
+
+Once you've completed these steps, you can proceed with the following commands:
 
 ### Create an Image from Dockerfile
 
@@ -55,7 +56,7 @@ docker compose down
 ### Execute an Interactive Bash Shell on the Container
 
 ```sh
-docker exec -it --workdir /project_home lammps-github-backup-service bash
+docker exec -it lammps-github-backup-service bash
 ```
 
 > [!NOTE]

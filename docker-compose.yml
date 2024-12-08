@@ -14,4 +14,4 @@ services:
     volumes:
     - "./:/project_home"
     - "${PROJECT_ROOT_DIR}:/shared_folders/"
-    - "./.ssh/:/root/.ssh"
+    # - "./.ssh/:/root/.ssh"

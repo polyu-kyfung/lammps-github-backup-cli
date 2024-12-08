@@ -76,13 +76,17 @@ bfg --replace-text /home/passwords.txt --no-blob-protection
 
 ## Utils (Shell Scripts)
 
-### Interactively create a new folder with a formatted name for lammps-nanocutting-SiC results
+### Interactively Create a New Folder for LAMMPS Nanocutting-SiC Results
 
-You can use the `./mkdir-for-lammps-results.sh` script to create a new folder with a formmated name for organizing your lammps-nanocutting-SiC results.
+You can use the `./mkdir-for-lammps-results.sh` script to create a new folder with a formatted name, which helps in organizing your LAMMPS nanocutting-SiC results efficiently.
 
-This script will prompt you to input the parameters of your simulation, such as the cutting speed, the groove depth, and the groove angle type.
+This script prompts you to input various parameters of your simulation, such as:
+- **Cutting Speed**: Choose a value between 1 and 3.
+- **Groove Depth**: Specify "no" for defect-free or select among 3, 6, or 9.
+- **Groove Shape**: Select between isosceles acute (a) or isosceles right (r) if a groove depth is specified.
 
-The script will then create a new folder with a name that reflects these parameters.
+Based on these inputs, the script generates and creates a new folder with a name that accurately reflects the chosen simulation parameters.
+
 
 ### Initialize git in a folder
 

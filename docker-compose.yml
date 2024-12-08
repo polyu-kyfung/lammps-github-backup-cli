@@ -1,0 +1,17 @@
+version: "3"
+services:
+  github_backup:
+    container_name: lammps-github-backup-service
+    image: lammps-github-backup-cli:2.0
+    env_file:
+      - .env
+    environment:
+      - GITHUB_EMAIL=${GITHUB_EMAIL}
+      - GITHUB_USERNAME=${GITHUB_USERNAME}
+      - GITHUB_REPO_OWNER=${GITHUB_REPO_OWNER}
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    volumes:
+    - "./:/project_home"
+    - "${PROJECT_ROOT_DIR}:/shared_folders/"
+    - "./.ssh/:/root/.ssh"

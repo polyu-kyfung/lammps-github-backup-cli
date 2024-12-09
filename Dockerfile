@@ -3,10 +3,13 @@
 FROM bitnami/git:latest
 LABEL maintainer="@chriskyfung" 
 
-# Update the package manager and install curl and gpg
-RUN apt update && apt install -y \
+# Update the package manager and install curl, gpg, gh (GitHub CLI) and default-jre
+RUN apt update && apt install -y --no-install-recommends \
   curl \
-  gpg
+  gpg \
+  gh \
+  default-jre \
+  && rm -rf /var/lib/apt/lists/* /var/cache/apk/*
 
 # Download the githubcli-archive-keyring.gpg file and store it in /usr/share/keyrings/
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
@@ -22,11 +25,6 @@ RUN curl -LJO https://repo1.maven.org/maven2/com/madgag/bfg/1.14.0/bfg-1.14.0.ja
   && mkdir /usr/local/bin/bfg/ \
   && mv bfg-1.14.0.jar /usr/local/bin/bfg/ \
   && echo 'alias bfg="java -jar /usr/local/bin/bfg/bfg-1.14.0.jar"' >> ~/.bashrc
-
-# Install gh (GitHub CLI) and default-jre
-RUN apt update && apt install -y \
-  gh \
-  default-jre
 
 # Set up GitHub CLI and Git completions in one command
 RUN echo 'eval "$(gh completion -s bash)"' >> ~/.bashrc \

@@ -38,7 +38,7 @@ Once you've completed these steps, you can proceed with the following commands:
 Navigate to the root directory of this project, where the **Dockerfile** is stored. In your terminal, run the following command to build the Docker image:
 
 ```sh
-docker build -t lammps-github-backup-cli:2.0 .
+docker build -t lammps-github-backup-cli:2.2 .
 ```
 
 ### Create and Start a Container Using Docker Compose
@@ -56,7 +56,7 @@ docker compose down
 ### Execute an Interactive Bash Shell on the Container
 
 ```sh
-docker exec -it lammps-github-backup-service bash
+docker exec -it lammps-github-backup-env bash
 ```
 
 > [!NOTE]

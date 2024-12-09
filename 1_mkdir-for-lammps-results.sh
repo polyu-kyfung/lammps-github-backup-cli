@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare -r prefix="lammps-nanocutting-SiC---" # dirname prefix
+declare -r prefix="lammps-nanocutting-SiC_" # dirname prefix
 declare -r suffix="--potential-EA--eq2" # dirname suffix, e.g. "--potential-EA", "--Tersoff-1994"
 # Prompt user to confirm the project prefix and suffix
 while true; do
@@ -35,10 +35,10 @@ while true; do
     read -r -p "Enter the groove depth [no, 3, 6 or 9]: " depth
 
     if [[ "$depth" =~ ^[nN][oO]?$ ]]; then
-        middle="defect-free-tool-at-speed-${speed}.0-results"
+        middle="results_defect-free-tool_speed-${speed}.0"
         break  
     elif [[ "$depth" =~ ^[3|6|9]$ ]]; then
-        halfwidth=$(printf %.1f "$((depth*5))e-1" | printf %g $(</dev/stdin))  # return "1.5", "3" or "4.5"
+        halfwidth=$(printf %.1f "$((depth*5))e-1" | printf %g "$(</dev/stdin)")  # return "1.5", "3" or "4.5"
         break
     else
         echo "Invalid input"
@@ -60,7 +60,7 @@ if  [[ "$depth" =~ ^[1-9]$ ]]; then
         esac
     done
 
-    middle="${depth}-by-${width}-v-groove-defect-tool-at-speed-${speed}.0-results"
+    middle="results_${depth}x${width}-v-groove-defect-tool_speed-${speed}.0"
 
 fi
 

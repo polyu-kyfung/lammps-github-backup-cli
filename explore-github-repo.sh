@@ -1,7 +1,7 @@
 #!/bin/bash
 
 declare -r owner="${GITHUB_REPO_OWNER}" # repository owner
-declare -r prefix="lammps-nanocutting-SiC---" # repo name prefix
+declare -r prefix="lammps-nanocutting-SiC_" # repo name prefix
 declare -r suffix="--potential-EA--eq2" # repo name suffix, e.g. "--potential-EA", "--Tersoff-1994"
 
 while true; do
@@ -50,7 +50,7 @@ while true; do
     read -r -p "Enter the groove depth [no, 3, 6 or 9]: " depth
 
     if [[ "$depth" =~ ^[nN][oO]?$ ]]; then
-        middle="defect-free-tool-at-speed-${speed}.0-${filetype}-results"
+        middle="${filetype}-results_defect-free-tool_speed-${speed}.0"
         depth="NaN"
         break
     elif [[ "$depth" =~ ^[3|6|9]$ ]]; then
@@ -75,7 +75,7 @@ if [[ "$depth" =~ ^[0-9]$ ]]; then
         esac
     done
 
-    middle="${depth}-by-${width}-v-groove-defect-tool-at-speed-${speed}.0-${filetype}-results"
+    middle="${filetype}-results_${depth}x${width}-v-groove-defect-tool_speed-${speed}.0"
     
 fi
 

@@ -30,12 +30,13 @@ done
 
 # Generate the new repository name from the name of working directory
 dirname=${PWD##*/}
-pattern="-results"
-reponame=${dirname/${pattern}/-${filetype}${pattern}}
+pattern="results"
+reponame=${dirname/${pattern}/${filetype}${pattern}}
 
 if [ ${#reponame} -gt 100 ]; then
-  RED='\033[0;31m'
-  echo -e "${RED}Name is too long (maximum is 100 characters)"
+  NC='\e[0m'
+  RED='\e[0;31m'
+  echo -e "${RED}Name is too long (maximum is 100 characters)${NC}"
   exit 1
 fi
 

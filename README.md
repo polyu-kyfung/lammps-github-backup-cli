@@ -139,6 +139,12 @@ If you prefer to use PowerShell on Windows, run the `./ovito.ps1` script file in
 
 ## Useful Git Commands
 
+### Add enable git tab completion in Linux Bash shell
+
+```sh
+source /usr/share/bash-completion/completions/git
+```
+
 ### Show git history in one line
 
 ```sh

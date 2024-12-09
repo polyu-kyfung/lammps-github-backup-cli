@@ -28,8 +28,9 @@ RUN apt update && apt install -y \
   gh \
   default-jre
 
-# Set up gh (GitHub CLI) bash completion
-RUN echo 'eval "$(gh completion -s bash)"' >> ~/.bash_profile
+# Set up GitHub CLI and Git completions in one command
+RUN echo 'eval "$(gh completion -s bash)"' >> ~/.bashrc \
+    && echo "source /usr/share/bash-completion/completions/git" >> ~/.bashrc
 
-# Set the working directory to `/project_home/`
+# Set the working directory
 WORKDIR /project_home/

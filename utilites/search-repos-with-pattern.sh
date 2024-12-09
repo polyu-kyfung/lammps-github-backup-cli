@@ -24,6 +24,6 @@ for REPO in $REPOS; do
   
   # Check if the file contains the search pattern
   if [[ -n "$FILE_CONTENT" && "$FILE_CONTENT" == *"$SEARCH_PATTERN"* ]]; then
-    echo "- $REPO"
+    echo "  $REPO"
   fi
 done

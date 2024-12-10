@@ -75,7 +75,7 @@ if [[ "$depth" =~ ^[0-9]$ ]]; then
         esac
     done
 
-    middle="${filetype}-results_${depth}x${width}-v-groove-defect-tool_speed-${speed}.0"
+    middle="${filetype}-results_${depth}-by-${width}-v-groove-defect-tool_speed-${speed}.0"
     
 fi
 

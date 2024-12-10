@@ -31,7 +31,7 @@ done
 # Generate the new repository name from the name of working directory
 dirname=${PWD##*/}
 pattern="results"
-reponame=${dirname/${pattern}/${filetype}${pattern}}
+reponame=${dirname/${pattern}/${filetype}-${pattern}}
 
 if [ ${#reponame} -gt 100 ]; then
   NC='\e[0m'

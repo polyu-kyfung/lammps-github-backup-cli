@@ -60,7 +60,7 @@ if  [[ "$depth" =~ ^[1-9]$ ]]; then
         esac
     done
 
-    middle="results_${depth}x${width}-v-groove-defect-tool_speed-${speed}.0"
+    middle="results_${depth}-by-${width}-v-groove-defect-tool_speed-${speed}.0"
 
 fi
 

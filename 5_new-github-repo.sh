@@ -36,7 +36,9 @@ reponame=${dirname/${pattern}/${filetype}-${pattern}}
 if [ ${#reponame} -gt 100 ]; then
   NC='\e[0m'
   RED='\e[0;31m'
+  YELLOW='\e[1;33m'
   echo -e "${RED}Name is too long (maximum is 100 characters)${NC}"
+  echo -e "Please create ${YELLOW}${reponame}${NC} manually on GitHub website."
   exit 1
 fi
 

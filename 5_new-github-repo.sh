@@ -30,8 +30,11 @@ done
 
 # Generate the new repository name from the name of working directory
 dirname=${PWD##*/}
+reponame=${dirname}
 pattern="results"
-reponame=${dirname/${pattern}/${filetype}-${pattern}}
+if [[ "${filetype}" != "dump" ]]; then 
+  reponame=${dirname/${pattern}/${filetype}-${pattern}}
+fi
 
 if [ ${#reponame} -gt 100 ]; then
   NC='\e[0m'

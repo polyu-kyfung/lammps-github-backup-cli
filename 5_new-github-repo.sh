@@ -37,11 +37,11 @@ if [[ "${filetype}" != "dump" ]]; then
 fi
 
 if [ ${#reponame} -gt 100 ]; then
-  NC='\e[0m'
-  RED='\e[0;31m'
-  YELLOW='\e[1;33m'
-  echo -e "${RED}Name is too long (maximum is 100 characters)${NC}"
-  echo -e "Please create ${YELLOW}${reponame}${NC} manually on GitHub website."
+  readonly NC_COLOR='\e[0m'
+  readonly RED_COLOR='\e[0;31m'
+  readonly YELLOW_COLOR='\e[1;33m'
+  echo -e "${RED_COLOR}Name is too long (maximum is 100 characters)${NC_COLOR}"
+  echo -e "Please create ${YELLOW_COLOR}$reponame${NC_COLOR} manually on GitHub website."
   exit 1
 fi
 

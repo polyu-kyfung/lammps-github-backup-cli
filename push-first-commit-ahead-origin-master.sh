@@ -1,24 +1,31 @@
 #!/bin/bash
 
-# Set delay in minutes
-DELAY_MINUTES=2.5
+# Constants
+declare -r DELAY_MINUTES=1         # Time interval between pushing each commit (in minutes)
+declare -r REMOTE="origin"
 
-echo ""
+# Get the current branch name
+branch_name=$(git rev-parse --abbrev-ref HEAD)
+
+# Print the branch name
+echo "Current branch: $branch_name"
+
+
 echo "Checking for unpushed commits..."
 
 while true; do
 
-  # Check for any unpushed commits
-  UNPUSHED_COMMITS=$(git log origin/master..HEAD --oneline)
+  # Check for any unpushed commits compared to the remote branch
+  UNPUSHED_COMMITS=$(git log "$REMOTE/$branch_name"..HEAD --oneline)
 
   if [ -z "$UNPUSHED_COMMITS" ]; then
     echo ""
-    echo "All commits have been pushed to origin."
+    echo "All commits have been pushed to $REMOTE."
     break
   fi
 
-  # Fetch the hash of the first unpushed commit ahead of origin/master
-  FIRST_UNPUSHED_COMMIT_HASH=$(git log --reverse --ancestry-path origin/master..HEAD --format="%H" | head -n 1)
+  # Fetch the hash of the first unpushed commit ahead of the remote branch
+  FIRST_UNPUSHED_COMMIT_HASH=$(git log --reverse --ancestry-path "origin/$branch_name"..HEAD --format="%H" | head -n 1)
 
   # Display the hash and the commit message to the screen for confirmation
   COMMIT_MSG=$(git log -1 --oneline ${FIRST_UNPUSHED_COMMIT_HASH})
@@ -26,11 +33,13 @@ while true; do
   echo "Start to push: ${COMMIT_MSG}"
   echo ""
 
-  # Push that commit to the master branch
-  git push origin ${FIRST_UNPUSHED_COMMIT_HASH}:master
+  # Push the commit to the remote branch
+  git push $REMOTE "${FIRST_UNPUSHED_COMMIT_HASH}":"$branch_name"
 
-  # Sleep for the specified delay
-  echo ""
-  echo "Sleeping for ${DELAY_MINUTES} minutes..."
-  sleep ${DELAY_MINUTES}m
+  # Get the number of remaining unpushed commits
+  count=$(git rev-list --count "$REMOTE/$branch_name"..HEAD)
+
+  # Sleep for the specified delay before pushing the next commit
+  echo "$count unpushed commits remain. Sleeping for ${DELAY_MINUTES} minutes..."
+  sleep "${DELAY_MINUTES}m"
 done

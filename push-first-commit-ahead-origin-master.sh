@@ -4,6 +4,9 @@
 declare -r DELAY_MINUTES=1         # Time interval between pushing each commit (in minutes)
 declare -r REMOTE="origin"
 
+readonly NC_COLOR='\e[0m'
+readonly YELLOW_COLOR='\e[1;33m'
+
 # Get the current branch name
 branch_name=$(git rev-parse --abbrev-ref HEAD)
 
@@ -27,11 +30,10 @@ while true; do
   # Fetch the hash of the first unpushed commit ahead of the remote branch
   FIRST_UNPUSHED_COMMIT_HASH=$(git log --reverse --ancestry-path "origin/$branch_name"..HEAD --format="%H" | head -n 1)
 
-  # Display the hash and the commit message to the screen for confirmation
-  COMMIT_MSG=$(git log -1 --oneline ${FIRST_UNPUSHED_COMMIT_HASH})
+  # Display the hash and the commit message for confirmation
+  COMMIT_MSG=$(git log -1 --oneline --format="%s" "${FIRST_UNPUSHED_COMMIT_HASH}")
   echo ""
-  echo "Start to push: ${COMMIT_MSG}"
-  echo ""
+  echo -e "Preparing to push commit: $YELLOW_COLOR${FIRST_UNPUSHED_COMMIT_HASH:0:8}$NC_COLOR $COMMIT_MSG"
 
   # Push the commit to the remote branch
   git push $REMOTE "${FIRST_UNPUSHED_COMMIT_HASH}":"$branch_name"

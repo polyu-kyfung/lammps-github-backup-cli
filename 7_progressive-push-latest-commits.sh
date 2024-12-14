@@ -1,13 +1,18 @@
 #!/bin/bash
 
 # Constants
-BRANCH="master"         # Remote branch name
-DELAY_MINUTES=3         # Time interval between pushing each commit (in minutes)
+declare -r DELAY_MINUTES=2         # Time interval between pushing each commit (in minutes)
+declare -r REMOTE="origin"
 
-# Get the number of unpushed commits
-count=$(git rev-list --count origin/${BRANCH}..HEAD^)
+# Get the current branch name
+branch_name=$(git rev-parse --abbrev-ref HEAD)
+
+# Print the branch name
+echo "Current branch: $branch_name"
+# Get the number of unpushed commits - 1
+count=$(git rev-list --count "origin/$branch_name"..HEAD^)
 if [[ -z "$count" ]]; then
-    echo "Error: No commits could be found."
+    echo "Error: No commits found."
     exit 1
 fi
 
@@ -29,18 +34,18 @@ done
 readonly LAST=1
 queue=$(seq "$num" -1 $LAST)
 for i in $queue; do
-    echo "Pushing HEAD~$i to remote:"
-    git show HEAD~$i -s
+    echo "Preparing to push HEAD~$i:"
+    git show "HEAD~$i" -s
     
-    git push origin HEAD~$i:$BRANCH
+    git push origin "HEAD~$i":"$branch_name"
 
     if (( i > LAST )); then
-        echo "Sleeping. Resume in $DELAY_MINUTES minutes."
+        echo "Sleeping for $DELAY_MINUTES minutes..."
         sleep "${DELAY_MINUTES}m"
     fi
 done
 
 # Push the latest commit (HEAD) to the remote repository
-echo "Pushing HEAD to remote:"
+echo "Preparing to push HEAD:"
 git show HEAD -s
-git push origin HEAD:$BRANCH
+git push origin HEAD:"$branch_name"

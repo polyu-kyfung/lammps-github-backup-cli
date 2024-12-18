@@ -4,11 +4,25 @@
 declare -r DELAY_MINUTES=2         # Time interval between pushing each commit (in minutes)
 declare -r REMOTE="origin"
 
+readonly NC_COLOR='\e[0m'
+readonly RED_COLOR='\e[0;31m'
+readonly YELLOW_COLOR='\e[1;33m'
+
 # Get the current branch name
 branch_name=$(git rev-parse --abbrev-ref HEAD)
 
 # Print the branch name
 echo "Current branch: $branch_name"
+
+# Check if the branch exists in the remote
+if git show-ref --verify --quiet "refs/remotes/$REMOTE/$branch_name"; then
+    echo "Branch '$branch_name' exists in remote '$REMOTE'."
+else
+    echo "Branch '$branch_name' does not exist in remote '$REMOTE'."
+    echo -e "Use $YELLOW_COLOR'git push -u origin $RED_COLOR<COMMIT_HASH>$YELLOW_COLOR:refs/heads/$branch_name'$NC_COLOR to create the remote branch."
+    exit 1
+fi
+
 # Get the number of unpushed commits - 1
 count=$(git rev-list --count "origin/$branch_name"..HEAD^)
 if [[ -z "$count" ]]; then

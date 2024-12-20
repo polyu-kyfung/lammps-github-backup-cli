@@ -1,8 +1,9 @@
 {
   "recommendations": [
     "mccarter.start-git-bash",
-    "timonwong.shellcheck",
     "thfriedrich.lammps",
-    "ms-azuretools.vscode-docker"
+    "ms-azuretools.vscode-docker",
+    "github.remotehub",
+    "ms-vscode.remote-repositories"
   ]
 }

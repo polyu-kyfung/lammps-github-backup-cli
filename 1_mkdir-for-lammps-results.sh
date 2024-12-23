@@ -2,12 +2,15 @@
 
 declare -r prefix="lammps-nanocutting-SiC_" # dirname prefix
 declare -r suffix="_BrennerScr_lmp20161117" # dirname suffix, e.g. "--potential-EA", "--Tersoff-1994"
-declare -r tool_label="-xLr15c5"
+declare -r midtag="$1"
 
 # Prompt user to confirm the project prefix and suffix
 while true; do
     echo "- Prefix: $prefix"
     echo "- Suffix: $suffix"
+    if [[ -n "$midtag" ]]; then
+        echo "- Midtag: $midtag"
+    fi
     read -r -p "Do you confirm to use these affixes for the new folder name? (y/n) " yN
 
     case $yN in
@@ -37,7 +40,7 @@ while true; do
     read -r -p "Enter the groove depth [no, 3, 6 or 9]: " depth
 
     if [[ "$depth" =~ ^[nN][oO]?$ ]]; then
-        middle="results_defect-free-tool${tool_label}_speed-${speed}.0"
+        middle_name="results_defect-free-tool${midtag}_speed-${speed}.0"
         break  
     elif [[ "$depth" =~ ^[3|6|9]$ ]]; then
         halfwidth=$(printf %.1f "$((depth*5))e-1" | printf %g "$(</dev/stdin)")  # return "1.5", "3" or "4.5"
@@ -62,12 +65,12 @@ if  [[ "$depth" =~ ^[1-9]$ ]]; then
         esac
     done
 
-    middle="results_${depth}-by-${width}-v-groove-defect-tool${tool_label}_speed-${speed}.0"
+    middle_name="results_${depth}-by-${width}-v-groove-defect-tool${midtag}_speed-${speed}.0"
 
 fi
 
 # Create a new directory with the formatted name
-dirname="${prefix}${middle}${suffix}"
+dirname="${prefix}${middle_name}${suffix}"
 mkdir "$dirname"
 
 # Display the new directory name

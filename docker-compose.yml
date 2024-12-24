@@ -2,7 +2,7 @@ version: "3"
 services:
   github_backup:
     container_name: lammps-github-backup-env
-    image: lammps-github-backup-cli:2.2
+    image: lammps-github-backup-cli:2.3
     env_file:
       - .env
     environment:

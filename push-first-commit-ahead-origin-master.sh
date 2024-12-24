@@ -1,7 +1,29 @@
 #!/bin/bash
 
+#===============================================================================
+# Script Name: push-first-commit-ahead-origin-master.sh
+# Description: This script pushes unpushed commits to a remote repository one 
+#              at a time with a specified delay between each push. It is 
+#              particularly useful for managing large commits or when dealing 
+#              with unstable network connections.
+#
+# Usage: ./push-first-commit-ahead-origin-master.sh [delay_minutes]
+#   delay_minutes: Optional time interval between pushing commits (default: 1 minute)
+#
+# Example: 
+#   ./push-first-commit-ahead-origin-master.sh 2  # Push commits with a 2-minute delay
+#
+# Notes:
+#   - Requires Git to be installed and configured.
+#   - Must be executed from within a Git repository.
+#   - Requires an existing remote branch.
+#
+# Copyright (c) 2023 Chris K.Y. Fung (chriskyfung.github.io)
+# Licensed under the MIT License. See LICENSE file in the project root for full license information.
+#===============================================================================
+
 # Constants
-declare -r DELAY_MINUTES=1         # Time interval between pushing each commit (in minutes)
+declare -r DELAY_MINUTES=${1:-1}    # Time interval between pushing each commit (in minutes), default is 1
 declare -r REMOTE="origin"
 
 readonly NC_COLOR='\e[0m'

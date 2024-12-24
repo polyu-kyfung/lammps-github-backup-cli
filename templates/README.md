@@ -35,7 +35,7 @@ This repository contains LAMMPS simulation results for the molecular dynamics si
 
 ## Execution
 
-To run the simulation, you need to have LAMMPS installed on your computer. You can download LAMMPS from https://lammps.sandia.gov/.
+To run the simulation, you need to have LAMMPS installed on your computer. You can download LAMMPS from <https://lammps.sandia.gov/>.
 
 **Input files**:
 
@@ -92,8 +92,24 @@ The simulation will output several files with different extensions, such as `.lo
   
 - For the atomic potential utilized in the MD simulations, please reference:
 
-  [**Erhart, P., & Albe, K.** (2005). Analytical potential for atomistic simulations of silicon, carbon, and silicon carbide. *Physical Review B, 71*(3), 035211.](https://doi.org/10.1103/physrevb.71.035211)
+  - **`SiC_1994.tersoff`**:
 
-  [**Pastewka, L., Klemenz, A., Gumbsch, P., & Moseler, M.** (2013). Screened empirical bond-order potential for Si-C. *Physical Review B, 87*, 205410.](http://dx.doi.org/10.1103/PhysRevB.87.205410)
+    [**Tersoff, J.** (1994). Chemical order in amorphous silicon carbide. *Physical Review B, 49* 16349.](https://doi.org/10.1103/PhysRevB.49.16349)
 
-  [**Pastewka, L., Mrovec, M., Moseler, M., & Gumbsch, P.** (2012). Bond order potentials for fracture, wear, and plasticity. *MRS Bulletin, 37*, 493.](http://dx.doi.org/10.1557/mrs.2012.94)
+  - **`SiC_Erhart-Albe.tersoff`**:
+  
+    [**Erhart, P., & Albe, K.** (2005). Analytical potential for atomistic simulations of silicon, carbon, and silicon carbide. *Physical Review B, 71*(3), 035211.](https://doi.org/10.1103/physrevb.71.035211)
+
+  - **Screened empirical bond-order potentials**:
+
+    [**Pastewka, L., Mrovec, M., Moseler, M., & Gumbsch, P.** (2012). Bond order potentials for fracture, wear, and plasticity. *MRS Bulletin, 37*, 493.](http://dx.doi.org/10.1557/mrs.2012.94)
+
+    [**Pastewka, L., Klemenz, A., Gumbsch, P., & Moseler, M.** (2013). Screened empirical bond-order potential for Si-C. *Physical Review B, 87*, 205410.](http://dx.doi.org/10.1103/PhysRevB.87.205410)
+
+    - **`TersoffScr`**:
+
+        [**Tersoff, J.** (1989). Modeling solid-state chemistry: Interatomic potentials for multicomponent systems. *Physical Review B, 39* 5556(R).](https://doi.org/10.1103/PhysRevB.39.5566)
+
+    - **`BrennerScr`**:
+
+      [**Erhart, P., & Albe, K.** (2005). Analytical potential for atomistic simulations of silicon, carbon, and silicon carbide. *Physical Review B, 71*(3), 035211.](https://doi.org/10.1103/physrevb.71.035211)

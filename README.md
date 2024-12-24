@@ -85,12 +85,12 @@ bfg --replace-text /home/passwords.txt --no-blob-protection
 You can use the `./mkdir-for-lammps-results.sh` script to create a new folder with a formatted name, which helps in organizing your LAMMPS nanocutting-SiC results efficiently.
 
 This script prompts you to input various parameters of your simulation, such as:
+
 - **Cutting Speed**: Choose a value between 1 and 3.
 - **Groove Depth**: Specify "no" for defect-free or select among 3, 6, or 9.
 - **Groove Shape**: Select between isosceles acute (a) or isosceles right (r) if a groove depth is specified.
 
 Based on these inputs, the script generates and creates a new folder with a name that accurately reflects the chosen simulation parameters.
-
 
 ### Initialize git in a folder
 
@@ -220,7 +220,6 @@ gh repo list [<owner>] [flags]
 
 📄 <https://cli.GitHub.com/manual/gh_repo_list>.
 
-
 ### Clone a GitHub repository to local storage
 
 ```sh
@@ -228,6 +227,57 @@ gh repo clone <repository>
 ```
 
 📄 <https://cli.GitHub.com/manual/gh_repo_clone>
+
+#### Perform a Shallow Clone
+
+A shallow clone allows you to clone a repository with a limited history, which can save time and space.
+
+```sh
+gh repo clone <repository> -- --depth 1
+```
+
+#### Perform a Partial Clone
+
+A partial clone allows you to clone a repository without downloading all the history, which can save time and space.
+
+```sh
+gh repo clone <repository> -- --filter=blob:none
+```
+
+#### Perform a Sparse Checkout
+
+Sparse checkout allows you to check out only a subset of files from the repository.
+
+1. Clone the repository:
+
+   ```sh
+   gh repo clone <repository> -- --no-checkout
+   ```
+
+2. Enable sparse checkout:
+
+   ```sh
+   git sparse-checkout init --cone
+   ```
+
+3. Define the directories or files you want to include:
+
+   ```sh
+   git sparse-checkout set <directory-or-file>
+   ```
+
+#### Example Usage
+
+To efficiently clone a large repository with many binary files, you can combine shallow clone, partial clone, and sparse checkout:
+
+```sh
+gh repo clone <repository> -- --depth 1 --filter=blob:none --no-checkout
+cd <repository>
+git sparse-checkout init --cone
+git sparse-checkout set <directory-or-file>
+```
+
+This approach minimizes the amount of data transferred and stored locally by only including the necessary files and excluding large binary files.
 
 ### Create a new private repository on GitHub based on a template repository
 

@@ -1,5 +1,44 @@
 #!/bin/bash
 
+# Copyright (c) 2023-2024 Chris K.Y. Fung
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#
+# Description:
+#   Progressive Git Push Script
+#   This script progressively pushes unpushed commits to a remote repository
+#   with a configurable delay between pushes to avoid overwhelming the server.
+#
+# Features:
+#   - Detects current branch and verifies remote branch existence
+#   - Counts unpushed commits and allows user to select push range
+#   - Pushes commits one by one with configurable delay
+#   - Includes colored output for better visibility
+#
+# Usage:
+#   ./7_progressive-push-latest-commits.sh
+#
+# Author: Chris K.Y. Fung (chriskyfung.github.io)
+# Created: 2023-08-04
+# Updated: 2024-12-25
+# Repository: https://github.com/polyu-kyfung/lammps-github-backup-cli
+
 # Constants
 declare -r DELAY_MINUTES=2         # Time interval between pushing each commit (in minutes)
 declare -r REMOTE="origin"

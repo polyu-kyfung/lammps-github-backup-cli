@@ -1,26 +1,43 @@
 #!/bin/bash
 
-#===============================================================================
-# Script Name: push-first-commit-ahead-origin-master.sh
-# Description: This script pushes unpushed commits to a remote repository one 
-#              at a time with a specified delay between each push. It is 
-#              particularly useful for managing large commits or when dealing 
-#              with unstable network connections.
+# Copyright (c) 2024 Chris K.Y. Fung
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
 #
-# Usage: ./push-first-commit-ahead-origin-master.sh [delay_minutes]
-#   delay_minutes: Optional time interval between pushing commits (default: 1 minute)
+# Description:
+#   Progressive Git Push Script for First Commit
+#   This script pushes the first unpushed commit to a remote repository
+#   with a configurable delay before next push to avoid overwhelming the server.
 #
-# Example: 
-#   ./push-first-commit-ahead-origin-master.sh 2  # Push commits with a 2-minute delay
+# Features:
+#   - Detects current branch and verifies remote branch existence
+#   - Identifies and pushes first unpushed commit
+#   - Configurable delay between pushes
+#   - Includes colored output for better visibility
 #
-# Notes:
-#   - Requires Git to be installed and configured.
-#   - Must be executed from within a Git repository.
-#   - Requires an existing remote branch.
+# Usage:
+#   ./push-first-commit-ahead-origin-master.sh [delay_minutes]
 #
-# Copyright (c) 2023 Chris K.Y. Fung (chriskyfung.github.io)
-# Licensed under the MIT License. See LICENSE file in the project root for full license information.
-#===============================================================================
+# Author: Chris K.Y. Fung (chriskyfung.github.io)
+# Created: 2023-12-12
+# Updated: 2024-12-25
+# Repository: https://github.com/polyu-kyfung/lammps-github-backup-cli
 
 # Constants
 declare -r DELAY_MINUTES=${1:-1}    # Time interval between pushing each commit (in minutes), default is 1

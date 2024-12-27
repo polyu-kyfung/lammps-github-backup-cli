@@ -24,7 +24,7 @@ _gh_repo_clone_custom() {
   if [[ "${COMP_WORDS[1]} ${COMP_WORDS[2]}" == "repo clone" ]]; then
     if [[ ! "$COMP_LINE" =~ ' -- ' && "${cur:0:1}" != "-" ]]; then
       # Suggest repository names if no flags are present and the current word does not start with '-'
-      COMPREPLY=( $(compgen -W "$(gh repo list --json nameWithOwner -q '.[] | .nameWithOwner')" -- "$cur") )
+      COMPREPLY=( $(compgen -W "$(gh api graphql --paginate -f query='query($endCursor: String) { viewer { repositories(first: 100, after: $endCursor) { nodes { nameWithOwner } pageInfo { hasNextPage endCursor } } } }' -q '.data.viewer.repositories.nodes[] | .nameWithOwner')" -- "$cur") )
     elif [[ "$COMP_LINE" =~ ' -- ' ]]; then
       # Suggest git flags if flags are present and the current word starts with '-'
       COMPREPLY=( $(compgen -W "$git_flags" -- "$cur") )
